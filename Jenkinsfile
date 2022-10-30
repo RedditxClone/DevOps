@@ -1,18 +1,18 @@
 pipeline {
-	agent none 
+	agent any 
 	stages {
-		stage('Build') {
+		stage('Test') {
 			agent {
                 docker { 
 					image 'node:18.12.0' 
-					args '-u root:root -v $HOME/workspace/devops:/devops'
+					args '-u root:root'
 				}
             }
             steps {
 				sh 'ls'
-                sh 'npm --version'
 				sh 'npm i -g @nestjs/cli@9.1.4'
-				sh 'nest info'
+				sh 'npm install'
+				sh 'npm run start'
             }
 		}
 	}
