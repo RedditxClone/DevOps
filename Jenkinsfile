@@ -3,9 +3,17 @@ pipeline {
 	stages {
 		stage('Test') {
             steps {
-				sh 'ls'
-		    		sh 'cd Backend'
-		    		sh 'ls'
+				sh '''
+					ls *
+					cd Backend
+					ls *
+					cd ../Frontend
+					ls *
+					cd ../Cross-Platform
+					ls *
+					cd ../Testing 
+					ls *
+				'''
             }
 		}
 	}
