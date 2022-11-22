@@ -8,15 +8,15 @@ pipeline {
 						ls -a
 						git checkout master
 						git pull --recurse-submodules
-						ls 
+						ls -a
 						cd Backend
-						ls 
+						ls -a
 						cd ../Frontend
-						ls 
+						ls -a
 						cd ../Cross-Platform
-						ls 
+						ls -a
 						cd ../Testing 
-						ls 
+						ls -a
 					'''
 				}
             }
