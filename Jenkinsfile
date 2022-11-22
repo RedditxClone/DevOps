@@ -4,6 +4,8 @@ pipeline {
 		stage('Test') {
             steps {
 				sh '''
+					ls -a
+					git pull --recurse-submodules
 					ls 
 					cd Backend
 					ls 
