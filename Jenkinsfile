@@ -4,15 +4,15 @@ pipeline {
 		stage('Test') {
             steps {
 				sh '''
-					ls *
+					ls 
 					cd Backend
-					ls *
+					ls 
 					cd ../Frontend
-					ls *
+					ls 
 					cd ../Cross-Platform
-					ls *
+					ls 
 					cd ../Testing 
-					ls *
+					ls 
 				'''
             }
 		}
