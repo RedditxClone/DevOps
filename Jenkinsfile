@@ -7,6 +7,7 @@ pipeline {
 					sh '''
 						ls -a
 						git checkout master
+						git pull
 						git pull --recurse-submodules
 						ls -a
 						cd Backend
