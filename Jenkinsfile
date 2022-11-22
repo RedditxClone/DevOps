@@ -6,6 +6,7 @@ pipeline {
 				withCredentials([gitUsernamePassword(credentialsId: 'mahmed-amer-key-1', gitToolName: 'git-tool')]) {
 					sh '''
 						ls -a
+						git checkout master
 						git pull --recurse-submodules
 						ls 
 						cd Backend
