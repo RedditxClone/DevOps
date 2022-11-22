@@ -1,0 +1,16 @@
+[submodule "Backend"]
+	path = Backend
+	url = https://github.com/RedditxClone/Backend
+	branch = master
+[submodule "Frontend"]
+	path = Frontend
+	url = https://github.com/RedditxClone/Frontend
+	branch = master
+[submodule "Cross-Platform"]
+	path = Cross-Platform
+	url = https://github.com/RedditxClone/Cross-Platform
+	branch = master
+[submodule "Testing"]
+	path = Testing
+	url = https://github.com/RedditxClone/Testing
+	branch = master
