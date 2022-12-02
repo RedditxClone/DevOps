@@ -60,7 +60,7 @@ pipeline {
 			steps {
 				sh '''
 					export DB_CONNECTION_STRING=mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@mongo-db-dev:27017 
-					docker-compose  -f 'docker-compose-dev.yml' -p 'swproject-dev' up -d
+					docker-compose -f 'docker-compose-dev.yml' -p 'swproject-dev' up -d
 				'''
             }
 		}		

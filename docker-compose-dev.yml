@@ -34,7 +34,7 @@ services:
   # Frontend Container
   frontend:
     container_name: front-dev
-    build: frontend:dev
+    image: frontend:dev
     environment:
       - REACT_APP_BASE_URL
     restart: always
@@ -43,7 +43,7 @@ services:
   # Cross Platform Container
   crossplatform:
     container_name: cross-dev
-    build: cross:dev
+    image: cross:dev
     networks:
       - proxy-network
     environment:
