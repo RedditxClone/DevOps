@@ -44,25 +44,26 @@ pipeline {
 					docker build -t cross:dev .
 				'''
 			}
-		}
-		/*
-		stage('Build new images for testing') {
-            steps {
+		}		
+		stage('Run Dev Containers For Testing') {
+			environment {
+				MONGO_INITDB_ROOT_USERNAME = credentials('MONGO_INITDB_ROOT_USERNAME')
+        		MONGO_INITDB_ROOT_PASSWORD = credentials('MONGO_INITDB_ROOT_PASSWORD')
+				JWT_SECRET = credentials('JWT_SECRET')
+				BASE_URL = credentials('BASE_URL')
+				REACT_APP_BASE_URL = credentials('BASE_URL')
+				FORGET_PASSWORD_SECRET = credentials('FORGET_PASSWORD_SECRET')
+				SU_USERNAME = credentials('SU_USERNAME')
+				SU_EMAIL = credentials('SU_EMAIL')
+				SU_PASS = credentials('SU_PASS')
+    		}
+			steps {
 				sh '''
-					cd Backend 
-					docker build -t backend:dev ./devops.Dockerfile
-					cd ../Frontend/reddit-front
-					docker build -t frontend:dev ./devops.Dockerfile
-					cd ../../Cross-Platform/reddit
-					docker build -t  cross:dev ./devops.Dockerfile
-					export 
-					export 
-					export 
+					export DB_CONNECTION_STRING=mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@mongo-db-dev:27017 
 					docker-compose up -d -f 'docker-compose-dev.yml' -p 'swproject-dev'
 				'''
             }
-		}
-		*/
+		}		
 		/*
 		stage('Run Tests'){
 			steps{
