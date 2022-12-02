@@ -44,7 +44,7 @@ FROM nginx:latest AS Final
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=Build /app/dist /usr/share/nginx/html
+COPY --from=Build /app/build /usr/share/nginx/html
 
 EXPOSE 80
 
