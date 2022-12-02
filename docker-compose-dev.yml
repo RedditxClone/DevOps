@@ -44,10 +44,14 @@ services:
   crossplatform:
     container_name: cross-dev
     image: cross:dev
-    networks:
-      - proxy-network
     environment:
       - BASE_URL
     restart: always
     depends_on:
       - backend
+
+volumes:
+  mongodb_data_container_dev:
+
+networks:
+  db-dev-network:
