@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  # Mongo DB Container
+  db:
+    container_name: mongo-db
+    image: mongo:4.4
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME_DEV}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD_DEV}"
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container_dev:/data/db
+    networks:
+      - db-dev-network
+    restart: always
+  # Backend Container
+  backend:
+    container_name: back-dev
+    image: backend:dev
+    environment:
+      - DB_CONNECTION_STRING
+      - JWT_SECRET
+      - FORGET_PASSWORD_SECRET
+      - SU_PASS
+      - SU_EMAIL
+      - SU_USERNAME
+    networks:
+      - db-dev-network
+    depends_on:
+      - db
+    restart: always
+  # Frontend Container
+  frontend:
+    container_name: front-dev
+    build: frontend:dev
+    environment:
+      - REACT_APP_BASE_URL
+    restart: always
+  # Cross Platform Container
+  crossplatform:
+    container_name: cross-dev
+    build: cross:dev
+    networks:
+      - proxy-network
+    environment:
+      - BASE_URL
+    restart: always

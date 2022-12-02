@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  # Mongo DB Container
+  db:
+    container_name: mongo-db
+    image: mongo:6.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME_DEV}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD_DEV}"
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container_prod:/data/db
+    networks:
+      - db-prod-network
+    restart: always
+
+  webserver:
+    container_name: proxy-nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    networks:
+      - proxy-network
+    volumes:
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - certbot-www:/var/www/certbot/:ro
+      - certbot-conf:/etc/nginx/ssl/:ro
