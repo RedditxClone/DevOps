@@ -37,7 +37,7 @@ RUN npm run build
 ENV NODE_ENV production
 
 # Remove Not needed Dependencies in node_modules Folder
-RUN npm ci --only=production && npm cache clean --force
+RUN npm ci --omit=dev && npm cache clean --force
 
 # End of Building
 # ---------------------------------------------------------
