@@ -55,9 +55,7 @@ services:
   # Proxy
   webserver:
     container_name: proxy-nginx-prod
-    build:
-      context: .
-      dockerfile: proxy.Dockerfile
+    image: myproxy:prod
     ports:
       - 80:80
       - 443:443
