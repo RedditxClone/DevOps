@@ -33,19 +33,22 @@ pipeline {
 				'''
 			}
 		}
-		stage('Build Frontend Development Image'){
+		stage('Build Frontend Development Image') {
+			environment {
+				REACT_APP_BASE_URL = credentials('BASE_URL')
+    		}
 			steps{
 				sh '''
 					cp frontend.Dockerfile ./Frontend/reddit-front/Dockerfile
 					cd Frontend/reddit-front
+					rm .env
+					echo REACT_APP_BASE_URL=$REACT_APP_BASE_URL > .env
 					docker build -t frontend:dev .
 				'''
 			}
 		}
 		stage('Build Cross-Platform Development Image'){
-			environment {
-				BASE_URL = credentials('BASE_URL')
-    		}
+
 			steps{
 				sh '''
 					cp cross.Dockerfile ./Cross-Platform/reddit/Dockerfile
@@ -53,7 +56,21 @@ pipeline {
 					docker build -t cross:dev .
 				'''
 			}
-		}	
+		}
+		stage('Build Testing Image') {
+			environment {
+				BASE_URL = credentials('BASE_URL')
+    		}
+			steps{
+				sh '''
+					cp testing.Dockerfile ./Testing/Dockerfile
+					cd Testing
+					rm .env
+					echo BASE_URL=$BASE_URL > .env
+					docker build -t testing:dev .
+				'''
+			}
+		}
 		stage('Run Dev Containers For Testing') {
 			environment {
 				MONGO_INITDB_ROOT_USERNAME = credentials('MONGO_INITDB_ROOT_USERNAME')
@@ -72,15 +89,6 @@ pipeline {
 					docker-compose -f 'docker-compose-dev.yml' -p 'swproject-dev' up -d
 				'''
             }
-		}
-		stage('Build Testing Image') {
-			steps{
-				sh '''
-					cp testing.Dockerfile ./Testing/Dockerfile
-					cd Testing
-					docker build -t testing:dev .
-				'''
-			}
 		}
 		stage('Run Tests') {
 			steps{

@@ -47,7 +47,11 @@ services:
     restart: always
     depends_on:
       - backend
-      
+  testing:
+    image: testing:dev
+    command: "--browser chrome --config video=false"
+    depends_on:
+      - frontend   
 volumes:
   mongodb_data_container_dev:
 
