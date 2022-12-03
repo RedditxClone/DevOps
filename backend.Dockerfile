@@ -34,10 +34,8 @@ COPY . .
 
 RUN npm run build
 
-ENV NODE_ENV production
-
 # Remove Not needed Dependencies in node_modules Folder
-RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+# RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
 
 # End of Building
 # ---------------------------------------------------------
@@ -50,6 +48,6 @@ COPY --from=Build /app/node_modules ./node_modules
 COPY --from=Build /app/dist ./dist
 
 # Start the server using the production build
-CMD "npm" "run" "start"
+CMD [ "node", "dist/main.js" ]
 
 # End of Final Image
