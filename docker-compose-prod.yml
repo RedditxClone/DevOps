@@ -3,22 +3,56 @@ version: "3.9"
 services:
   # Mongo DB Container
   db:
-    container_name: mongo-db
+    container_name: mongo-db-prod
     image: mongo:6.0
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME_DEV}"
-      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD_DEV}"
-    ports:
-      - 27017:27017
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
     volumes:
       - mongodb_data_container_prod:/data/db
     networks:
       - db-prod-network
     restart: always
-
+  # Backend Container
+  backend:
+    container_name: back-prod
+    image: backend:prod
+    environment:
+      - DB_CONNECTION_STRING
+      - JWT_SECRET
+      - FORGET_PASSWORD_SECRET
+      - SU_PASS
+      - SU_EMAIL
+      - SU_USERNAME
+    networks:
+      - db-prod-network
+    depends_on:
+      - db
+    restart: always
+  # Frontend Container
+  frontend:
+    container_name: front-prod
+    image: frontend:prod
+    environment:
+      - REACT_APP_BASE_URL
+    restart: always
+    depends_on:
+      - backend
+  # Cross Platform Container
+  crossplatform:
+    container_name: cross-prod
+    image: cross:prod
+    environment:
+      - BASE_URL
+    restart: always
+    depends_on:
+      - backend
+  # Proxy
   webserver:
     container_name: proxy-nginx
-    image: nginx:latest
+    build:
+      context: .
+      dockerfile: proxy.Dockerfile
     ports:
       - 80:80
       - 443:443
@@ -26,6 +60,24 @@ services:
     networks:
       - proxy-network
     volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - certbot-www:/var/www/certbot/:ro
-      - certbot-conf:/etc/nginx/ssl/:ro
+      - certbot_www_volume:/var/www/certbot/
+      - certbot_conf_volume:/etc/nginx/ssl/
+    depends_on:
+      - frontend
+      - crossplatform
+  # SSL Certificate (One Time Only) 
+  certbot:
+    container_name: proxy-certbot
+    image: certbot/certbot:latest
+    volumes:
+      - certbot_www_volume:/var/www/certbot/
+      - certbot_conf_volume:/etc/letsencrypt/
+
+volumes:
+  mongodb_data_container_prod:
+  certbot_conf_volume:
+  certbot_www_volume:
+
+networks:
+  db-dev-network:
+  proxy-network:

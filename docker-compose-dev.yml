@@ -4,7 +4,7 @@ services:
   # Mongo DB Container
   db:
     container_name: mongo-db-dev
-    image: mongo:4.4
+    image: mongo:6.0
     environment:
       MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
       MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
@@ -49,7 +49,8 @@ services:
       - backend
   testing:
     image: testing:dev
-    command: "--browser chrome --config video=false > /e2e/results/log.txt"
+    container_name: testing-dev
+    command: "--browser chrome --config video=false"
     depends_on:
       - frontend
     volumes:
