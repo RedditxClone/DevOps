@@ -19,8 +19,6 @@ pipeline {
 						cd ../Testing 
 						git checkout master
 						git pull
-						cd ..
-						git pull
 						echo "All repos are here"
 					'''
 				}
