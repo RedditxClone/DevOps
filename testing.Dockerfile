@@ -1,4 +1,4 @@
-FROM cypress/included
+FROM cypress/included:11.0.0
 
 WORKDIR /e2e
 
