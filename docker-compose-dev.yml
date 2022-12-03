@@ -49,9 +49,11 @@ services:
       - backend
   testing:
     image: testing:dev
-    command: "--browser chrome --config video=false"
+    command: "--browser chrome --config video=false > /e2e/results/log.txt"
     depends_on:
-      - frontend   
+      - frontend
+    volumes:
+      - test_results:/e2e/results
 volumes:
   mongodb_data_container_dev:
 

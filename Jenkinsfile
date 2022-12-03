@@ -41,7 +41,7 @@ pipeline {
 				sh '''
 					cp frontend.Dockerfile ./Frontend/reddit-front/Dockerfile
 					cd Frontend/reddit-front
-					rm .env
+					rm .env -f
 					echo REACT_APP_BASE_URL=$REACT_APP_BASE_URL > .env
 					docker build -t frontend:dev .
 				'''
@@ -65,7 +65,7 @@ pipeline {
 				sh '''
 					cp testing.Dockerfile ./Testing/Dockerfile
 					cd Testing
-					rm .env
+					rm .env -f
 					echo BASE_URL=$BASE_URL > .env
 					docker build -t testing:dev .
 				'''
