@@ -56,6 +56,7 @@ services:
       - test_results:/e2e/results
 volumes:
   mongodb_data_container_dev:
+  test_results:
 
 networks:
   db-dev-network:
