@@ -4,4 +4,4 @@ WORKDIR /e2e
 
 COPY . .
 
-CMD "npx" "cypress" "run" "--config video=false"
+CMD "npx" "cypress" "run" "--config" "video=false"
