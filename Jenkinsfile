@@ -42,7 +42,7 @@ pipeline {
 					docker build -t cross:dev .
 				'''
 			}
-		}		
+		}	
 		stage('Run Dev Containers For Testing') {
 			environment {
 				MONGO_INITDB_ROOT_USERNAME = credentials('MONGO_INITDB_ROOT_USERNAME')
@@ -61,18 +61,23 @@ pipeline {
 					docker-compose -f 'docker-compose-dev.yml' -p 'swproject-dev' up -d
 				'''
             }
-		}		
-		/*
-		stage('Run Tests'){
+		}
+		stage('Build Testing Image') {
 			steps{
 				sh '''
-					echo "Starting Testing"
-					echo "Testing..."
-					echo "Testing Finished: Passed"
+					cp testing.Dockerfile ./Testing/Dockerfile
+					cd Testing
+					docker build -t testing:dev .
 				'''
 			}
 		}
-		*/
+		stage('Run Tests') {
+			steps{
+				sh '''
+					docker run --name test-dev testing:dev
+				'''
+			}
+		}
 		/*
 		stage('Build new images for production') {
             steps {

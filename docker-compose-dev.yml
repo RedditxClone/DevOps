@@ -47,7 +47,12 @@ services:
     restart: always
     depends_on:
       - backend
-
+  testing:
+    image: testing:dev
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e
+      
 volumes:
   mongodb_data_container_dev:
 
