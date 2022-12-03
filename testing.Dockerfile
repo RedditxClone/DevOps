@@ -8,6 +8,4 @@ RUN npm ci
 
 COPY . .
 
-RUN npm run build
-
 CMD "npx" "cypress" "run" "--config video=false"
