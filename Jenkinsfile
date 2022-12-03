@@ -152,7 +152,7 @@ pipeline {
     		}
 			steps {
 				sh '''
-					export DB_CONNECTION_STRING=mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@mongo-db-dev:27017 
+					export DB_CONNECTION_STRING=mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@mongo-db-prod:27017 
 					docker-compose -f 'docker-compose-prod.yml' -p 'swproject-prod' up -d
 				'''
             }
