@@ -47,6 +47,7 @@ WORKDIR /app
 COPY --from=Build /app/node_modules ./node_modules
 COPY --from=Build /app/dist ./dist
 
+EXPOSE 3000
 # Start the server using the production build
 CMD [ "node", "dist/main.js" ]
 
