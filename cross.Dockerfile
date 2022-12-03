@@ -14,7 +14,7 @@ RUN flutter build web --dart-define=BASE_URL=${BASE_URL}
 # Move App To Final Image
 FROM nginx:latest AS Final
 
-COPY nginx.conf /etc/nginx/nginx.conf
+#COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=Build /app/build/web/ /usr/share/nginx/html
 
