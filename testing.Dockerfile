@@ -1,10 +1,6 @@
-FROM node:18.12.0-alpine AS Dependencies
+FROM cypress/included
 
 WORKDIR /e2e
-
-COPY package*.json ./
-
-RUN npm ci
 
 COPY . .
 
