@@ -118,6 +118,7 @@ pipeline {
 			steps{
 				sh '''
 					cp frontend.Dockerfile ./Frontend/reddit-front/Dockerfile
+					cp frontend.nginx.conf ./Frontend/reddit-front/nginx.conf
 					cd Frontend/reddit-front
 					rm .env -f
 					echo REACT_APP_BASE_URL=$REACT_APP_BASE_URL > .env
@@ -132,6 +133,7 @@ pipeline {
 			steps{
 				sh '''
 					cp cross.Dockerfile ./Cross-Platform/reddit/Dockerfile
+					cp cross.nginx.conf ./Cross-Platform/reddit/nginx.conf
 					cd Cross-Platform/reddit
 					export BASE_URL=$REACT_APP_BASE_URL/api
 					docker build -t cross:prod .

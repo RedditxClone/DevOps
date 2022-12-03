@@ -40,7 +40,7 @@ RUN npm run build
 # Move App To Final Image
 FROM nginx:latest AS Final
 
-#COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=Build /app/build /usr/share/nginx/html
 
