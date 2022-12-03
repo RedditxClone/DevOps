@@ -26,6 +26,7 @@ services:
       - SU_USERNAME
     networks:
       - db-prod-network
+      - proxy-network
     depends_on:
       - db
     restart: always
@@ -36,6 +37,8 @@ services:
     environment:
       - REACT_APP_BASE_URL
     restart: always
+    networks:
+      - proxy-network
     depends_on:
       - backend
   # Cross Platform Container
@@ -45,6 +48,8 @@ services:
     environment:
       - BASE_URL
     restart: always
+    networks:
+      - proxy-network
     depends_on:
       - backend
   # Proxy
