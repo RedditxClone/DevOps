@@ -26,7 +26,6 @@ pipeline {
 			steps{
 				sh '''
 					cp frontend.Dockerfile ./Frontend/reddit-front/Dockerfile
-					cp frontend.nginx.conf ./Frontend/reddit-front/nginx.conf
 					cd Frontend/reddit-front
 					docker build -t frontend:dev .
 				'''
@@ -39,7 +38,6 @@ pipeline {
 			steps{
 				sh '''
 					cp cross.Dockerfile ./Cross-Platform/reddit/Dockerfile
-					cp cross.nginx.conf ./Cross-Platform/reddit/nginx.conf
 					cd Cross-Platform/reddit
 					docker build -t cross:dev .
 				'''

@@ -50,6 +50,6 @@ COPY --from=Build /app/node_modules ./node_modules
 COPY --from=Build /app/dist ./dist
 
 # Start the server using the production build
-CMD [ "node", "dist/main.js" ]
+CMD "npm" "run" "start"
 
 # End of Final Image
