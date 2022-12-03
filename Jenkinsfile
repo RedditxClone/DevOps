@@ -38,6 +38,7 @@ pipeline {
 				sh '''
 					export REACT_APP_BASE_URL="http://back-dev:3000"
 					cp frontend.Dockerfile ./Frontend/reddit-front/Dockerfile
+					cp frontend.nginx.conf ./Frontend/reddit-front/nginx.conf
 					cd Frontend/reddit-front
 					rm .env -f
 					echo REACT_APP_BASE_URL=$REACT_APP_BASE_URL > .env
@@ -49,6 +50,7 @@ pipeline {
 			steps{
 				sh '''
 					cp cross.Dockerfile ./Cross-Platform/reddit/Dockerfile
+					cp cross.nginx.conf ./Cross-Platform/reddit/nginx.conf
 					cd Cross-Platform/reddit
 					export BASE_URL="http://back-dev:3000/api"
 					docker build -t cross:dev .
