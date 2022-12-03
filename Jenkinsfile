@@ -137,7 +137,7 @@ pipeline {
 					cp cross.Dockerfile ./Cross-Platform/reddit/Dockerfile
 					cp cross.nginx.conf ./Cross-Platform/reddit/nginx.conf
 					cd Cross-Platform/reddit
-					export BASE_URL=$REACT_APP_BASE_URL/api
+					export BASE_URL=demosfortest.com/api/
 					docker build -t cross:prod .
 				'''
 			}
