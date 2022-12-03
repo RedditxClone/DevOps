@@ -74,7 +74,7 @@ pipeline {
 		stage('Run Tests') {
 			steps{
 				sh '''
-					docker run --name test-dev testing:dev
+					docker run -it --name test-dev -w /e2e testing:dev
 				'''
 			}
 		}

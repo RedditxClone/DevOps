@@ -1,6 +1,6 @@
 FROM node:18.12.0-alpine AS Dependencies
 
-WORKDIR /app
+WORKDIR /e2e
 
 COPY package*.json ./
 
