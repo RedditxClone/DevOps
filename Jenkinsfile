@@ -6,7 +6,7 @@ pipeline {
 				withCredentials([gitUsernamePassword(credentialsId: 'mahmed-amer-key-1', gitToolName: 'git-tool')]) {
 					sh '''
 						git checkout master
-						git reset -hard
+						git reset --hard
 						git pull
 						git submodule update --init --recursive
 						cd Backend 
