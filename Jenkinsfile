@@ -97,6 +97,7 @@ pipeline {
 		stage('Remove Dev Containers For Testing') {
 			steps{
 				sh '''
+					docker-compose -f 'docker-compose-dev.yml' stop
 					docker-compose -f 'docker-compose-dev.yml' down
 				'''
 			}

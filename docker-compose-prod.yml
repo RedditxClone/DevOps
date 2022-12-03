@@ -79,5 +79,5 @@ volumes:
   certbot_www_volume:
 
 networks:
-  db-dev-network:
+  db-prod-network:
   proxy-network:
