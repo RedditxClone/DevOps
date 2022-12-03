@@ -1,5 +1,5 @@
 # Install Dependencies
-FROM node:18.12.0 AS Dependencies
+FROM node:18.12.0-alpine AS Dependencies
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ RUN npm ci
 # End of Tests
 # ---------------------------------------------------------
 # Build App
-FROM node:18.12.0 AS Build
+FROM node:18.12.0-alpine AS Build
 
 WORKDIR /app
 
@@ -35,7 +35,7 @@ COPY . .
 RUN npm run build
 
 # Remove Not needed Dependencies in node_modules Folder
-# RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
 
 # End of Building
 # ---------------------------------------------------------
