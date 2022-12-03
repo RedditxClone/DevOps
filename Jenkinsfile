@@ -36,7 +36,7 @@ pipeline {
 		stage('Build DEV Frontend Development Image') {
 			steps{
 				sh '''
-					EXPORT REACT_APP_BASE_URL = "http://back-dev:3000"
+					export REACT_APP_BASE_URL = "http://back-dev:3000"
 					cp frontend.Dockerfile ./Frontend/reddit-front/Dockerfile
 					cd Frontend/reddit-front
 					rm .env -f
@@ -50,7 +50,7 @@ pipeline {
 				sh '''
 					cp cross.Dockerfile ./Cross-Platform/reddit/Dockerfile
 					cd Cross-Platform/reddit
-					EXPORT BASE_URL = "http://back-dev:3000/api"
+					export BASE_URL = "http://back-dev:3000/api"
 					docker build -t cross:dev .
 				'''
 			}
@@ -78,8 +78,8 @@ pipeline {
     		}
 			steps {
 				sh '''
-					EXPORT BASE_URL = "http://back-dev:3000"
-					EXPORT REACT_APP_BASE_URL = "http://back-dev:3000"
+					export BASE_URL = "http://back-dev:3000"
+					export REACT_APP_BASE_URL = "http://back-dev:3000"
 					export DB_CONNECTION_STRING=mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@mongo-db-dev:27017 
 					docker-compose -f 'docker-compose-dev.yml' -p 'swproject-dev' up -d
 				'''
