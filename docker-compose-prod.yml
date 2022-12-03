@@ -49,7 +49,7 @@ services:
       - backend
   # Proxy
   webserver:
-    container_name: proxy-nginx
+    container_name: proxy-nginx-prod
     build:
       context: .
       dockerfile: proxy.Dockerfile
@@ -67,7 +67,7 @@ services:
       - crossplatform
   # SSL Certificate (One Time Only) 
   certbot:
-    container_name: proxy-certbot
+    container_name: proxy-certbot-prod
     image: certbot/certbot:latest
     volumes:
       - certbot_www_volume:/var/www/certbot/
