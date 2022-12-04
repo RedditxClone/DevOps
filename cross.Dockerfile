@@ -1,7 +1,7 @@
 # Build App
 FROM instrumentisto/flutter:3.3.7 AS Build
 
-ARG BASE_URL
+ARG BSE_URL
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ COPY ./ /app
 
 RUN flutter doctor
 
-RUN flutter build web --dart-define=BASE_URL=$BASE_URL
+RUN flutter build web --dart-define=BASE_URL=$BSE_URL
 
 # End of Building
 # ---------------------------------------------------------
