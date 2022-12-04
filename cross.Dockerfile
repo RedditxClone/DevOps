@@ -9,7 +9,7 @@ COPY ./ /app
 
 RUN flutter doctor
 
-RUN flutter build web --dart-define="BASE_URL=$BASE_URL"
+RUN flutter build web --dart-define=BASE_URL=$BASE_URL
 
 # End of Building
 # ---------------------------------------------------------
