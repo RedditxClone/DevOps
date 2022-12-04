@@ -53,7 +53,7 @@ pipeline {
 					cp cross.nginx.conf ./Cross-Platform/reddit/nginx.conf
 					cd Cross-Platform/reddit
 					export BASE_URL="http://back-dev:3000/api"
-					docker build -t cross:dev .
+					docker build -t cross:dev --build-arg BASE_URL=$BASE_URL .
 				'''
 			}
 		}
@@ -138,7 +138,7 @@ pipeline {
 					cp cross.nginx.conf ./Cross-Platform/reddit/nginx.conf
 					cd Cross-Platform/reddit
 					export BASE_URL=demosfortest.com/api/
-					docker build -t cross:prod .
+					docker build -t cross:prod --build-arg BASE_URL=$BASE_URL .
 				'''
 			}
 		}
