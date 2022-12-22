@@ -24,18 +24,38 @@ services:
       - SU_PASS
       - SU_EMAIL
       - SU_USERNAME
+      - EMAIL_USER
+      - EMAIL_PASS
+      - GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_android
+      - GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_web
+      - GOOGLE_CREDIENTIALS_CLIENT_ID_web
     networks:
       - db-prod-network
       - proxy-network
     depends_on:
       - db
     restart: always
+    volumes:
+    - backend_assets:/app/assets/
+  # Static Content
+  static-resources:
+    container_name: resources
+    image: nginx:latest
+    restart: always
+    volumes:
+      - backend_assets:/usr/share/nginx/html/assets
+    networks:
+    - proxy-network  
   # Frontend Container
   frontend:
     container_name: front-prod
     image: frontend:prod
     environment:
       - REACT_APP_BASE_URL
+      - REACT_APP_GOOGLE_ID
+      - REACT_APP_GOOGLE_SECRET
+      - REACT_APP_GITHUB_ID
+      - REACT_APP_GITHUB_SECRET
     restart: always
     networks:
       - proxy-network
@@ -47,6 +67,7 @@ services:
     image: cross:prod
     environment:
       - BASE_URL
+      - MEDIA_URL
     restart: always
     networks:
       - proxy-network
@@ -80,6 +101,7 @@ volumes:
   mongodb_data_container_prod:
   certbot_conf_volume:
   certbot_www_volume:
+  backend_assets:
 
 networks:
   db-prod-network:

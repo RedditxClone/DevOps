@@ -34,6 +34,12 @@ pipeline {
 			}
 		}
 		stage('Build DEV Frontend Development Image') {
+			environment {
+				REACT_APP_GOOGLE_ID = credentials('REACT_APP_GOOGLE_ID')
+				REACT_APP_GOOGLE_SECRET = credentials('REACT_APP_GOOGLE_SECRET')
+      			REACT_APP_GITHUB_ID = credentials('REACT_APP_GITHUB_ID')
+      			REACT_APP_GITHUB_SECRET = credentials('REACT_APP_GITHUB_SECRET')
+			}
 			steps{
 				sh '''
 					export REACT_APP_BASE_URL="http://back-dev:3000"
@@ -42,6 +48,10 @@ pipeline {
 					cd Frontend/reddit-front
 					rm .env -f
 					echo REACT_APP_BASE_URL=$REACT_APP_BASE_URL > .env
+					echo REACT_APP_GOOGLE_ID=$REACT_APP_GOOGLE_ID >> .env
+					echo REACT_APP_GOOGLE_SECRET=$REACT_APP_GOOGLE_SECRET >> .env
+					echo REACT_APP_GITHUB_ID=$REACT_APP_GITHUB_ID >> .env
+					echo REACT_APP_GITHUB_SECRET=$REACT_APP_GITHUB_SECRET >> .env
 					docker build -t frontend:dev .
 				'''
 			}
@@ -52,8 +62,9 @@ pipeline {
 					cp cross.Dockerfile ./Cross-Platform/reddit/Dockerfile
 					cp cross.nginx.conf ./Cross-Platform/reddit/nginx.conf
 					cd Cross-Platform/reddit
-					export BASE_URL="http://back-dev:3000/api"
-					docker build -t cross:dev --build-arg BASE_URL=$BASE_URL .
+					export BASE_URL=https://demosfortest.com/api/
+					export MEDIA_URL=https://static.demosfortest.com/
+					docker build -t cross:prod --build-arg BSE_URL=$BASE_URL --build-arg MDIA_URL=$MEDIA_URL ..
 				'''
 			}
 		}
@@ -116,6 +127,10 @@ pipeline {
 		stage('Build PROD Frontend Development Image') {
 			environment {
 				REACT_APP_BASE_URL = credentials('BASE_URL')
+				REACT_APP_GOOGLE_ID = credentials('REACT_APP_GOOGLE_ID')
+				REACT_APP_GOOGLE_SECRET = credentials('REACT_APP_GOOGLE_SECRET')
+      			REACT_APP_GITHUB_ID = credentials('REACT_APP_GITHUB_ID')
+      			REACT_APP_GITHUB_SECRET = credentials('REACT_APP_GITHUB_SECRET')
     		}
 			steps{
 				sh '''
@@ -124,21 +139,23 @@ pipeline {
 					cd Frontend/reddit-front
 					rm .env -f
 					echo REACT_APP_BASE_URL=$REACT_APP_BASE_URL > .env
+					echo REACT_APP_GOOGLE_ID=$REACT_APP_GOOGLE_ID >> .env
+					echo REACT_APP_GOOGLE_SECRET=$REACT_APP_GOOGLE_SECRET >> .env
+					echo REACT_APP_GITHUB_ID=$REACT_APP_GITHUB_ID >> .env
+					echo REACT_APP_GITHUB_SECRET=$REACT_APP_GITHUB_SECRET >> .env
 					docker build -t frontend:prod .
 				'''
 			}
 		}
 		stage('Build PROD Cross-Platform Development Image'){
-			environment {
-				REACT_APP_BASE_URL = credentials('BASE_URL')
-    		}
 			steps{
 				sh '''
 					cp cross.Dockerfile ./Cross-Platform/reddit/Dockerfile
 					cp cross.nginx.conf ./Cross-Platform/reddit/nginx.conf
 					cd Cross-Platform/reddit
 					export BASE_URL=https://demosfortest.com/api/
-					docker build -t cross:prod --build-arg BSE_URL=$BASE_URL .
+					export MEDIA_URL=https://static.demosfortest.com/
+					docker build -t cross:prod --build-arg BSE_URL=$BASE_URL --build-arg MDIA_URL=$MEDIA_URL .
 				'''
 			}
 		}

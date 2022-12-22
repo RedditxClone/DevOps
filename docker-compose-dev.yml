@@ -24,17 +24,33 @@ services:
       - SU_PASS
       - SU_EMAIL
       - SU_USERNAME
+      - EMAIL_USER
+      - EMAIL_PASS
+      - GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_android
+      - GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_web
+      - GOOGLE_CREDIENTIALS_CLIENT_ID_web
     networks:
       - db-dev-network
     depends_on:
       - db
     restart: always
+  # Static Content
+  static-resources:
+    container_name: resources
+    image: nginx:latest
+    restart: always
+    volumes:
+      - backend_assets:/usr/share/nginx/html/assets 
   # Frontend Container
   frontend:
     container_name: front-dev
     image: frontend:dev
     environment:
       - REACT_APP_BASE_URL
+      - REACT_APP_GOOGLE_ID
+      - REACT_APP_GOOGLE_SECRET
+      - REACT_APP_GITHUB_ID
+      - REACT_APP_GITHUB_SECRET
     restart: always
     depends_on:
       - backend
@@ -44,6 +60,7 @@ services:
     image: cross:dev
     environment:
       - BASE_URL
+      - MEDIA_URL
     restart: always
     depends_on:
       - backend

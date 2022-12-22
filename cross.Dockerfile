@@ -3,13 +3,15 @@ FROM instrumentisto/flutter:3.3.7 AS Build
 
 ARG BSE_URL
 
+ARG MDIA_URL
+
 WORKDIR /app
 
 COPY ./ /app
 
 RUN flutter doctor
 
-RUN flutter build web --dart-define=BASE_URL=$BSE_URL
+RUN flutter build web --dart-define=BASE_URL=$BSE_URL --dart-define=MEDIA_URL=$MDIA_URL
 
 # End of Building
 # ---------------------------------------------------------
