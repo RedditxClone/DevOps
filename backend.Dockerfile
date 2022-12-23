@@ -11,6 +11,8 @@ RUN npm ci
 # Run Testing
 FROM mongo AS Testing
 
+RUN apt update -y
+
 RUN apt install -y nodejs
 
 RUN apt install -y npm
