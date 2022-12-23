@@ -9,19 +9,19 @@ RUN npm ci
 # End of Install Dependencies
 # ---------------------------------------------------------
 # Run Testing
-#FROM node:18.12.0 AS Testing
+FROM node:18.12.0 AS Testing
 
-#WORKDIR /app
+WORKDIR /app
 
-#COPY --from=Dependencies /app/node_modules ./node_modules
+COPY --from=Dependencies /app/node_modules ./node_modules
 
-#COPY . .
+COPY . .
 
-#RUN npm i mongodb-memory-server@7
+RUN npm i mongodb-memory-server@7
 
-#RUN npm run test
+RUN npm run test
 
-# End of Tests
+#End of Tests
 # ---------------------------------------------------------
 # Build App
 FROM node:18.12.0-alpine AS Build
