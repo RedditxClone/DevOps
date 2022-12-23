@@ -9,13 +9,13 @@ pipeline {
 						git submodule update --init --recursive
 						git submodule update --recursive --remote
 						cd Backend 
-						git pull Backend master
+						git pull origin master
 						cd ../Frontend 
-						git pull Frontend master
+						git pull origin master
 						cd ../Cross-Platform 
-						git pull Cross-Platform master
+						git pull origin master
 						cd ../Testing 
-						git pull Testing master
+						git pull origin master
 						echo "All repos are here"
 					'''
 				}
