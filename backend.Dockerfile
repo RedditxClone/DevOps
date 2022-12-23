@@ -32,7 +32,7 @@ COPY --from=Dependencies /app/node_modules ./node_modules
 
 COPY . .
 
-RUN npm i mongodb-memory-server@7
+RUN npm i mongodb-memory-server
 
 RUN npm run test
 
