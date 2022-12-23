@@ -11,7 +11,8 @@ pipeline {
 						cd Backend
 						git fetch
 						git checkout solve-testing
-						git pull
+						cd ..
+						git submodule update --recursive --remote --merge
 						echo "All repos are here"
 					'''
 				}
