@@ -8,7 +8,7 @@ pipeline {
 						git checkout master
 						git submodule update --init --recursive
 						git submodule update --recursive --remote
-						git pull --recurse-submodules
+						git submodule update --recursive
 						echo "All repos are here"
 					'''
 				}
