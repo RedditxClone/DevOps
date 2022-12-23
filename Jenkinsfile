@@ -10,15 +10,19 @@ pipeline {
 						cd Backend
 						git pull origin master
 						git checkout master
+						git pull
 						cd ../Frontend 
 						git pull origin master
 						git checkout master
+						git pull
 						cd ../Cross-Platform 
 						git pull origin master
 						git checkout master
+						git pull
 						cd ../Testing 
 						git pull origin master
 						git checkout master
+						git pull
 						echo "All repos are here"
 					'''
 				}
