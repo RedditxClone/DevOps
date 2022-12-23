@@ -7,13 +7,17 @@ pipeline {
 					sh '''
 						git checkout master
 						git submodule update --init --recursive
-						cd Backend 
+						cd Backend
+						git checkout master
 						git pull origin master
 						cd ../Frontend 
+						git checkout master
 						git pull origin master
 						cd ../Cross-Platform 
+						git checkout master
 						git pull origin master
 						cd ../Testing 
+						git checkout master
 						git pull origin master
 						echo "All repos are here"
 					'''
