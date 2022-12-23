@@ -1,5 +1,5 @@
 # Install Dependencies
-FROM node:18.12.0-alpine AS Dependencies
+FROM node:18.12.0 AS Dependencies
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ RUN npm run test
 #End of Tests
 # ---------------------------------------------------------
 # Build App
-FROM node:18.12.0-alpine AS Build
+FROM node:18.12.0 AS Build
 
 WORKDIR /app
 
@@ -40,7 +40,7 @@ RUN npm run build
 # End of Building
 # ---------------------------------------------------------
 # Move Dependencies and App To Final Image
-FROM node:18.12.0-alpine AS Final
+FROM node:18.12.0 AS Final
 
 WORKDIR /app
 
