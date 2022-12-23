@@ -7,9 +7,9 @@ pipeline {
 					sh '''
 						git checkout master
 						git submodule update --init --recursive
-						git submodule update --recursive
+						git submodule update --recursive --remote
 						ls
-						cd Backend						
+						cd Backend		
 						ls
 						git pull
 						cd ../Frontend 
