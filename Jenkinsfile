@@ -7,22 +7,7 @@ pipeline {
 					sh '''
 						git checkout master
 						git submodule update --init --recursive
-						git submodule update --recursive --remote
-						cd Backend		
-						git checkout master
-						git pull
-						cd ../Frontend 
-						git pull origin master
-						git checkout master
-						git pull
-						cd ../Cross-Platform 
-						git pull origin master
-						git checkout master
-						git pull
-						cd ../Testing 
-						git pull origin master
-						git checkout master
-						git pull
+						git submodule update --recursive --remote --merge 
 						echo "All repos are here"
 					'''
 				}
