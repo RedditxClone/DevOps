@@ -7,7 +7,9 @@ pipeline {
 					sh '''
 						git checkout master
 						git submodule update --init --recursive
+						cat Backend/docker-compose.yml 
 						git submodule update --recursive --remote --merge 
+						cat Backend/docker-compose.yml 
 						echo "All repos are here"
 					'''
 				}
