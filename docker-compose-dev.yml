@@ -75,6 +75,7 @@ services:
 volumes:
   mongodb_data_container_dev:
   test_results:
+  backend_assets:
 
 networks:
   db-dev-network:
