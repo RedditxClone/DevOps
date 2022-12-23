@@ -7,10 +7,10 @@ pipeline {
 					sh '''
 						git checkout master
 						git submodule update --init --recursive
+						git submodule update --recursive --remote
 						cd Backend
-						git fetch
-						git checkout master	
-						git pull
+						git reset --hard origin/master
+						git merge origin/master
 						cd ../Frontend 
 						git pull origin master
 						git checkout master
