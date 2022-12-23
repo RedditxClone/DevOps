@@ -8,9 +8,8 @@ pipeline {
 						git checkout master
 						git submodule update --init --recursive
 						git submodule update --recursive --remote
-						ls
 						cd Backend		
-						ls
+						git checkout master
 						git pull
 						cd ../Frontend 
 						git pull origin master
