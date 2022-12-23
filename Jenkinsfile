@@ -9,7 +9,8 @@ pipeline {
 						git submodule update --init --recursive
 						git submodule update --recursive --remote
 						cd Backend
-						git reset --hard origin/master	
+						git reset --hard origin/master
+						git checkout master	
 						git pull
 						cd ../Frontend 
 						git pull origin master
