@@ -7,18 +7,6 @@ pipeline {
 					sh '''
 						git checkout master
 						git submodule update --init --recursive
-						cd Backend 
-						git checkout master
-						git pull
-						cd ../Frontend 
-						git checkout master
-						git pull
-						cd ../Cross-Platform 
-						git checkout master
-						git pull
-						cd ../Testing 
-						git checkout master
-						git pull
 						echo "All repos are here"
 					'''
 				}
@@ -64,7 +52,7 @@ pipeline {
 					cd Cross-Platform/reddit
 					export BASE_URL=https://demosfortest.com/api/
 					export MEDIA_URL=https://static.demosfortest.com/
-					docker build -t cross:prod --build-arg BSE_URL=$BASE_URL --build-arg MDIA_URL=$MEDIA_URL ..
+					docker build -t cross:prod --build-arg BSE_URL=$BASE_URL --build-arg MDIA_URL=$MEDIA_URL .
 				'''
 			}
 		}
