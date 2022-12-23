@@ -10,7 +10,7 @@ pipeline {
 						git submodule update --recursive --remote --merge 
 						cd Backend
 						git checkout origin/solve-testing
-						git submodule update --remote --merge 
+						git pull
 						echo "All repos are here"
 					'''
 				}
