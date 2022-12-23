@@ -39,7 +39,7 @@ services:
     - backend_assets:/app/assets/
   # Static Content
   static-resources:
-    container_name: resources
+    container_name: resources-prod
     image: nginx:latest
     restart: always
     volumes:
