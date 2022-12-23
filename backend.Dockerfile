@@ -19,7 +19,6 @@ ENV EMAIL_PASS password
 ENV JWT_SECRET exmapleForJWTSecret
 ENV PORT 3000
 ENV FORGET_PASSWORD_SECRET example
-
 ENV GOOGLE_CREDIENTIALS_CLIENT_ID_web 543234829301-2pgqtk6133g5k2l6nbhbfn1dq21ffvi0.apps.googleusercontent.com
 ENV GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_web 731962970730-93vd9ao2c9ckhmguioje6ar6jmjk3cic.apps.googleusercontent.com
 ENV GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_android 731962970730-eogvrnvtmkq777vvd7s5gumlguqql9o2.apps.googleusercontent.com
@@ -34,7 +33,7 @@ COPY . .
 
 RUN npm i mongodb-memory-server
 
-RUN npm run test
+RUN npm run test -b 
 
 #End of Tests
 # ---------------------------------------------------------
