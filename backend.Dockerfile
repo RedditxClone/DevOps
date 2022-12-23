@@ -9,21 +9,13 @@ RUN npm ci
 # End of Install Dependencies
 # ---------------------------------------------------------
 # Run Testing
-FROM mongo AS Testing
-
-RUN apt update -y
-
-RUN apt install -y nodejs
-
-RUN apt install -y npm
+FROM backend_testing AS Testing
 
 WORKDIR /app
 
-#COPY --from=Dependencies /app/node_modules ./node_modules
+COPY --from=Dependencies /app/node_modules ./node_modules
 
 COPY . .
-
-RUN npm ci
 
 RUN npm i mongodb-memory-server@7
 
