@@ -11,9 +11,9 @@ RUN npm ci
 # Run Testing
 FROM mongo AS Testing
 
-RUN apt install nodejs:18.12.0
+RUN apt install -y nodejs
 
-RUN apt install npm
+RUN apt install -y npm
 
 WORKDIR /app
 
