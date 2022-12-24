@@ -17,7 +17,7 @@ COPY --from=Dependencies /app/node_modules ./node_modules
 
 COPY . .
 
-RUN npm run test -b --exit
+RUN CI=true npm run test -b
 
 # End of Tests
 # ---------------------------------------------------------

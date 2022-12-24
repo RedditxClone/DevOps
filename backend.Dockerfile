@@ -33,7 +33,7 @@ COPY . .
 
 RUN npm i mongodb-memory-server
 
-RUN npm run test -b --exit
+RUN CI=true npm run test -b
 
 #End of Tests
 # ---------------------------------------------------------
