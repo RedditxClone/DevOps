@@ -8,6 +8,7 @@ pipeline {
 						git checkout master
 						git submodule update --init --recursive
 						git submodule update --recursive --remote --merge 
+						cd Backend
 						git fetch
 						git checkout solve-testing
 						git merge origin/solve-testing
