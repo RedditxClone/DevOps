@@ -12,6 +12,10 @@ pipeline {
 						git fetch
 						git checkout solve-testing
 						git merge origin/solve-testing
+						cd ../Frontend
+						git fetch
+						git checkout fix_fetal_bugs
+						git merge origin/fix_fetal_bugs
 						echo "All repos are here"
 					'''
 				}
