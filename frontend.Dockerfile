@@ -9,15 +9,15 @@ RUN npm ci --force
 # End of Install Dependencies
 # ---------------------------------------------------------
 # Run Testing
-# FROM node:18.12.0 AS Testing
+FROM node:18.12.0 AS Testing
 
-# WORKDIR /app
+WORKDIR /app
 
-# COPY --from=Dependencies /app/node_modules ./node_modules
+COPY --from=Dependencies /app/node_modules ./node_modules
 
-# COPY . .
+COPY . .
 
-# RUN CI=true npm run test -b
+RUN CI=true npm run test -b
 
 # End of Tests
 # ---------------------------------------------------------

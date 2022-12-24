@@ -185,4 +185,12 @@ pipeline {
             }
 		}
 	}
+	post {
+		always {
+				sh '''
+					docker-compose -f 'docker-compose-dev.yml' -p 'swproject-dev' stop
+					docker-compose -f 'docker-compose-dev.yml' -p 'swproject-dev' down
+				'''
+		}
+	}
 }
