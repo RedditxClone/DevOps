@@ -103,7 +103,7 @@ pipeline {
 		stage('Run Tests') {
 			steps{
 				sh '''
-					docker run --network=swproject-dev_default -w /e2e testing:dev 
+					docker run --network=swproject-dev_default --cpus=2 --memory=4096m -w /e2e testing:dev 
 				'''
 			}
 		}
