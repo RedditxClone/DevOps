@@ -103,7 +103,7 @@ pipeline {
 		stage('Run Tests') {
 			steps{
 				sh '''
-					docker run -w /e2e testing:dev
+					docker run -w /e2e testing:dev --network=swproject-dev_default
 				'''
 			}
 		}
