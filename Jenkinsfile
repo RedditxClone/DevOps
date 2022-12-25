@@ -147,6 +147,8 @@ pipeline {
 					echo REACT_APP_GOOGLE_SECRET=$REACT_APP_GOOGLE_SECRET >> .env
 					echo REACT_APP_GITHUB_ID=$REACT_APP_GITHUB_ID >> .env
 					echo REACT_APP_GITHUB_SECRET=$REACT_APP_GITHUB_SECRET >> .env
+					echo REACT_APP_GITHUB_SECRET=$REACT_APP_GITHUB_SECRET >> .env
+					echo REACT_APP_MEDIA_URL=https://static.demosfortest.com/ >> .env
 					docker build -t frontend:prod .
 				'''
 			}
@@ -170,10 +172,6 @@ pipeline {
 				JWT_SECRET = credentials('JWT_SECRET')
 				BASE_URL = credentials('BASE_URL')
 				REACT_APP_BASE_URL = credentials('BASE_URL')
-				REACT_APP_GOOGLE_ID = credentials('REACT_APP_GOOGLE_ID')
-				REACT_APP_GOOGLE_SECRET = credentials('REACT_APP_GOOGLE_SECRET')
-				REACT_APP_GITHUB_ID = credentials('REACT_APP_GITHUB_ID')
-				REACT_APP_GITHUB_SECRET = credentials('REACT_APP_GITHUB_SECRET')
 				FORGET_PASSWORD_SECRET = credentials('FORGET_PASSWORD_SECRET')
 				SU_USERNAME = credentials('SU_USERNAME')
 				SU_EMAIL = credentials('SU_EMAIL')
@@ -187,7 +185,6 @@ pipeline {
 			steps {
 				sh '''
 					export DB_CONNECTION_STRING=mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@mongo-db-prod:27017 
-					export REACT_APP_MEDIA_URL=https://static.demosfortest.com/
 					docker build -t myproxy:prod -f proxy.Dockerfile .
 					docker-compose -f 'docker-compose-prod.yml' -p 'swproject-prod' up -d
 				'''
