@@ -11,6 +11,7 @@ RUN npm ci
 # Run Testing
 FROM backend_testing AS Testing
 
+
 WORKDIR /app 
 
 ENV JWT_SECRET exmapleForJWTSecret
