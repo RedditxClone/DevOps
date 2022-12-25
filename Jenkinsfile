@@ -87,6 +87,10 @@ pipeline {
 				SU_PASS = credentials('SU_PASS')
 				EMAIL_USER = credentials('EMAIL_USER')
 				EMAIL_PASS = credentials('EMAIL_PASS')
+				REACT_APP_GOOGLE_ID = credentials('REACT_APP_GOOGLE_ID')
+				REACT_APP_GOOGLE_SECRET = credentials('REACT_APP_GOOGLE_SECRET')
+				REACT_APP_GITHUB_ID = credentials('REACT_APP_GITHUB_ID')
+				REACT_APP_GITHUB_SECRET = credentials('REACT_APP_GITHUB_SECRET')
 				GOOGLE_CREDIENTIALS_CLIENT_ID_web = credentials('GOOGLE_CREDIENTIALS_CLIENT_ID_web')
         		GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_web = credentials('GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_web')
 				GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_android = credentials('GOOGLE_CREDIENTIALS_CLIENT_ID_flutter_android')
@@ -103,7 +107,6 @@ pipeline {
 		stage('Run Tests') {
 			steps{
 				sh '''
-					docker exec back-dev node dist/seed.js
 					docker run --network=swproject-dev_default --cpus=2 --memory=4096m -w /e2e testing:dev 
 				'''
 			}
@@ -167,6 +170,10 @@ pipeline {
 				JWT_SECRET = credentials('JWT_SECRET')
 				BASE_URL = credentials('BASE_URL')
 				REACT_APP_BASE_URL = credentials('BASE_URL')
+				REACT_APP_GOOGLE_ID = credentials('REACT_APP_GOOGLE_ID')
+				REACT_APP_GOOGLE_SECRET = credentials('REACT_APP_GOOGLE_SECRET')
+				REACT_APP_GITHUB_ID = credentials('REACT_APP_GITHUB_ID')
+				REACT_APP_GITHUB_SECRET = credentials('REACT_APP_GITHUB_SECRET')
 				FORGET_PASSWORD_SECRET = credentials('FORGET_PASSWORD_SECRET')
 				SU_USERNAME = credentials('SU_USERNAME')
 				SU_EMAIL = credentials('SU_EMAIL')
