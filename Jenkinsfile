@@ -10,8 +10,8 @@ pipeline {
 						git submodule update --recursive --remote --merge 
 						cd Backend
 						git fetch
-						git checkout solve-testing
-						git merge origin/solve-testing
+						git checkout final-phase
+						git merge origin/final-phase
 						cd ../Frontend
 						git fetch
 						git checkout fix_fetal_bugs
