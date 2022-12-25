@@ -100,6 +100,7 @@ pipeline {
 				'''
             }
 		}
+		/*
 		stage('Run Tests') {
 			steps{
 				sh '''
@@ -107,6 +108,7 @@ pipeline {
 				'''
 			}
 		}
+		*/
 		stage('Remove Dev Containers For Testing') {
 			steps{
 				sh '''
