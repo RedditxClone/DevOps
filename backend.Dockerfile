@@ -16,6 +16,7 @@ WORKDIR /app
 ENV JWT_SECRET exmapleForJWTSecret
 ENV FORGET_PASSWORD_SECRET exmapleForFORGETPASSWORDSECRET
 
+
 COPY --from=Dependencies /app/node_modules ./node_modules
 
 COPY . .
