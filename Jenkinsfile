@@ -103,7 +103,7 @@ pipeline {
 		stage('Run Tests') {
 			steps{
 				sh '''
-					docker exec back-dev node seed.js
+					docker exec back-dev node dist/seed.js
 					docker run --network=swproject-dev_default --cpus=2 --memory=4096m -w /e2e testing:dev 
 				'''
 			}
