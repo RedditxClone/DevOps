@@ -9,20 +9,20 @@ RUN npm ci
 # End of Install Dependencies
 # ---------------------------------------------------------
 # Run Testing
-# FROM backend_testing AS Testing
+FROM backend_testing AS Testing
 
-# WORKDIR /app 
+WORKDIR /app 
 
-# ENV JWT_SECRET exmapleForJWTSecret
-# ENV FORGET_PASSWORD_SECRET exmapleForFORGETPASSWORDSECRET
+ENV JWT_SECRET exmapleForJWTSecret
+ENV FORGET_PASSWORD_SECRET exmapleForFORGETPASSWORDSECRET
 
-# COPY --from=Dependencies /app/node_modules ./node_modules
+COPY --from=Dependencies /app/node_modules ./node_modules
 
-# COPY . .
+COPY . .
 
-# RUN npm i mongodb-memory-server
+RUN npm i mongodb-memory-server
 
-# RUN CI=true npm run test -b
+RUN CI=true npm run test -b
 
 #End of Tests
 # ---------------------------------------------------------
